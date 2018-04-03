@@ -19,12 +19,16 @@ from radio import views
 
 
 urlpatterns = [
-    re_path('',views.index,name='index')
+    re_path('^index2$',     views.index2,       name='index2'),
+    re_path('',             views.index,        name='index'),
+
 ]
 
 #Ссылки на радио
 #http://pawno-info.ru/showthread.php?t=280553
 #http://sat-life.info/showthread.php?t=6104
+#https://www.radiobells.com/radio4site/ ОГРОМНОЕ КОЛИЧЕСТВО ПОТОКОВ
+#https://vk.com/topic-103116043_34671966
 
 #Шаблоны
 #https://html-templates.info/

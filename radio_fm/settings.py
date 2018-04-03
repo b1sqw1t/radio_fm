@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'RU-ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -119,8 +119,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
-PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_PATH, '/static/'),
-)
+MEDIA_URL           = '/media/'
+STATIC_URL          = '/static/'
+STATICFILES_DIRS    = (os.path.join(BASE_DIR,'static'),)
+TEMPLATE_DIRS       = (os.path.join(BASE_DIR,'templates'),)
+MEDIA_ROOT =           os.path.join(BASE_DIR,'uploads')
