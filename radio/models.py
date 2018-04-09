@@ -2,6 +2,21 @@
 from django.db import models
 
 # Create your models here.
+
+
+class Country(models.Model):
+    name = models.CharField(max_length=40, blank=True, null=True, verbose_name='Страна')
+
+    def __str__(self):
+        return "%s" % self.name
+
+class City(models.Model):
+    name = models.CharField(max_length=50,blank=True,null=True,verbose_name='Город')
+    country = models.ForeignKey(Country,on_delete=models.CASCADE,verbose_name='Страна')
+    def __str__(self):
+        return "%s" %self.name
+
+
 class Radioitem(models.Model):
     class Meta:
         verbose_name =          'Радиостанция'
@@ -13,8 +28,10 @@ class Radioitem(models.Model):
     radio_logo =        models.ImageField(upload_to='logo',verbose_name='Лого Радиостанции',blank=True)
     radio_view =        models.IntegerField(default=0,verbose_name='Просмотры')
     radio_likes=        models.IntegerField(default=0,verbose_name='Лайки')
+    radio_city =        models.ForeignKey(City,on_delete=models.CASCADE,verbose_name='Город',blank=True,null=True)
     created =           models.DateTimeField(auto_now_add=True, auto_now=False,verbose_name='Добавлен')
     changed =           models.DateTimeField(auto_now_add=False, auto_now=True,verbose_name='Редактирован')
+
 
     def __str__(self):
         return "%s" %self.radio_name

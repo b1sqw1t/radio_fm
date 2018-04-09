@@ -2,46 +2,19 @@
 {% load staticfiles %}
 
 {% block body %}
+{% for field in object_list %}
     <div class="grid-item">
         <figure class="effect-bubba">
-            <img src="{% static 'img/tm-img-01-tn.jpg' %}" alt="Image" class="img-fluid tm-img">
+            <img src="{{field.radio_logo.url}}" alt="Image" class=""/>
             <figcaption>
-                <h2 class="tm-figure-title">Проверка <span>Лого</span></h2>
+                <h2 class="tm-figure-title">{{ field.radio_name }} </h2>
                 <p class="tm-figure-description">А потом будет всплывать эта ндпись</p>
-                <a href="/radio/2/">ТУТ БУДЕТ ССЫЛКА НА РАДИО</a>
+                <a href="{% url 'radioview' field.id %}">ТУТ БУДЕТ ССЫЛКА НА РАДИО</a>
             </figcaption>
         </figure>
     </div>
-    <div class="grid-item">
-        <figure class="effect-bubba">
-            <img src="{% static 'img/tm-img-01-tn.jpg' %}" alt="Image" class="img-fluid tm-img">
-            <figcaption>
-                <h2 class="tm-figure-title">Проверка <span>Лого</span></h2>
-                <p class="tm-figure-description">А потом будет всплывать эта ндпись</p>
-                <a href="/radio/2/">ТУТ БУДЕТ ССЫЛКА НА РАДИО</a>
-            </figcaption>
-        </figure>
-    </div>
-    <div class="grid-item">
-        <figure class="effect-bubba">
-            <img src="{% static 'img/tm-img-01-tn.jpg' %}" alt="Image" class="img-fluid tm-img">
-            <figcaption>
-                <h2 class="tm-figure-title">Проверка <span>Лого</span></h2>
-                <p class="tm-figure-description">А потом будет всплывать эта ндпись</p>
-                <a href="/radio/2/">ТУТ БУДЕТ ССЫЛКА НА РАДИО</a>
-            </figcaption>
-        </figure>
-    </div>
-    <div class="grid-item">
-        <figure class="effect-bubba">
-            <img src="{% static 'img/tm-img-01-tn.jpg' %}" alt="Image" class="img-fluid tm-img">
-            <figcaption>
-                <h2 class="tm-figure-title">Проверка <span>Лого</span></h2>
-                <p class="tm-figure-description">А потом будет всплывать эта ндпись</p>
-                <a href="/radio/2/">ТУТ БУДЕТ ССЫЛКА НА РАДИО</a>
-            </figcaption>
-        </figure>
-    </div>
+{% endfor %}
+
 
 
 
