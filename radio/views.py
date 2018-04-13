@@ -5,6 +5,7 @@ class index(list.ListView):
     template_name = 'index.html'
     model = Radioitem
     paginate_by = 4
+    pk_url_kwarg = 'radioid'
 
     def get_context_data(self,**kwargs):
         context= super(index,self).get_context_data(**kwargs)
@@ -12,22 +13,21 @@ class index(list.ListView):
         return context
 
 class viewradio(base.TemplateView):
-    template_name = 'index22.html'
+    template_name = 'radioview.html'
     def get(self,request,*args,**kwargs):
         try:
             self.radioid = self.args[0]
-            print(self.radioid)
         except:
-            pass
+            self.radioid = 1
         return super(viewradio,self).get(request,*args,**kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(viewradio,self).get_context_data(**kwargs)
         context['radioitem'] = Radioitem.objects.get(id=self.radioid)
         context['title'] = context['radioitem'].radio_name
-        context['ccity'] = 'CTLLLAAA'
+
         return context
-    # pk_url_kwarg = args[0]
+    #  = args[0]
     #
     # def get(self,request,*args,**kwargs):
     #     self.radio_id = self.args[0]

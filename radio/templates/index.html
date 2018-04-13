@@ -4,8 +4,8 @@
 {% block body %}
 {% for field in object_list %}
     <div class="grid-item">
-        <figure class="effect-bubba">
-            <img src="{{field.radio_logo.url}}" alt="Image" class=""/>
+        <figure class="effect-bubba" >
+            <img src="{{field.radio_logo.url}}" alt="Image">
             <figcaption>
                 <h2 class="tm-figure-title">{{ field.radio_name }} </h2>
                 <p class="tm-figure-description">А потом будет всплывать эта ндпись</p>
@@ -14,10 +14,6 @@
         </figure>
     </div>
 {% endfor %}
-
-
-
-
 {% endblock %}
 
 

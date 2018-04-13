@@ -13,19 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls.static    import static
-from django.conf                import settings
+
 from django.urls                import path,re_path
 from radio                      import views
 
 
 urlpatterns = [
-    re_path('^radio(\w+)/?$',   views.viewradio.as_view(),  name='radioview'),
+    re_path('^radio(?P<radioid>[0-9]{1})/$/?$',   views.viewradio.as_view(),  name='radioview'),
     re_path('^index2$',         views.index2,               name='index2'),
     re_path('',                 views.index.as_view(),      name='index'),
 
 ]
-urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 #Ссылки на радио
 #http://pawno-info.ru/showthread.php?t=280553
 #http://sat-life.info/showthread.php?t=6104

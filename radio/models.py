@@ -4,15 +4,40 @@ from django.db import models
 # Create your models here.
 
 
+
 class Country(models.Model):
+    class Meta:
+        verbose_name =          'Страна'
+        verbose_name_plural =   'Страны'
+        db_table = 'Country'
+
     name = models.CharField(max_length=40, blank=True, null=True, verbose_name='Страна')
 
     def __str__(self):
         return "%s" % self.name
 
 class City(models.Model):
+    class Meta:
+        verbose_name =          'Город'
+        verbose_name_plural =   'Города'
+        db_table = 'City'
+
     name = models.CharField(max_length=50,blank=True,null=True,verbose_name='Город')
     country = models.ForeignKey(Country,on_delete=models.CASCADE,verbose_name='Страна')
+
+    def __str__(self):
+        return "%s" %self.name
+
+class Style(models.Model):
+    class Meta:
+        verbose_name =          'Жанр'
+        verbose_name_plural =   'Жанры'
+        db_table = 'Style'
+
+    name = models.CharField(max_length=20, verbose_name='Название',unique=True)
+    info = models.TextField(verbose_name='Информация о жанре')
+    popular = models.BooleanField(default=False,verbose_name='Популярный')
+
     def __str__(self):
         return "%s" %self.name
 
@@ -21,9 +46,11 @@ class Radioitem(models.Model):
     class Meta:
         verbose_name =          'Радиостанция'
         verbose_name_plural =   'Радиостанции'
+        db_table = 'Radioitem'
 
     radio_name =        models.CharField(max_length=15,verbose_name='Название',unique=True)
     radio_description = models.TextField(verbose_name='Описание радиостанции')
+    radio_style =       models.ForeignKey(Style,on_delete=models.CASCADE,verbose_name='Жанр')
     radio_flow =        models.URLField(blank=True,null=True,verbose_name="Ссылка на поток")
     radio_logo =        models.ImageField(upload_to='logo',verbose_name='Лого Радиостанции',blank=True)
     radio_view =        models.IntegerField(default=0,verbose_name='Просмотры')
@@ -48,3 +75,4 @@ class Radioitem(models.Model):
     def delete(self,*args,**kwargs):
         self.radio_logo.delete(save=False)
         super(Radioitem,self).delete(*args,**kwargs)
+

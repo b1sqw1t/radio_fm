@@ -1,1 +1,48 @@
 {% extends 'base/index.html' %}
+{% block body %}
+{% block title_text %}
+{% endblock %}
+{% block title_text_2 %}
+{% endblock %}
+
+<center><p><h1>Вы слушаете радио онлайн — {{ radioitem.radio_name }}</h1></p>
+    <hr>
+
+        <audio controls><source src="{{ radioitem.radio_flow }}" type="audio/mpeg">
+            Тег audio не поддерживается вашим браузером.
+        </audio>
+    </center>
+
+<div>
+
+    <hr>
+    <div >
+    <div><h1>{{ radioitem.radio_description }}</h1></div>
+    <div align="center">
+        {% with tab='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' space='&nbsp;&nbsp;' %}
+        <table>
+            <tr>
+                <td><strong>{{ tab }}Жанр: </strong></td>
+                <td><p><strong> {{ space }}{{ radioitem.radio_style }}</strong></p></td>
+                <td><strong>{{ tab }}Страна: </strong></td>
+                <td><p><strong> {{ space }}{{ radioitem.radio_city.country }}</strong></p></td>
+                <td><strong>{{ tab }}Город: </strong></td>
+                <td><p><strong> {{ space }}{{ radioitem.radio_city }}</strong></p></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td><strong>{{ tab }}Like: </strong></td>
+                <td><p><strong> {{ space }}{{ radioitem.radio_likes }}</strong></p></td>
+                <td><strong>{{ tab }}Views: </strong></td>
+                <td><p><strong> {{ space }}{{ radioitem.radio_view }}</strong></p></td>
+            </tr>
+        </table>
+        {% endwith %}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
