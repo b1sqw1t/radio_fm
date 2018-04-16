@@ -5,43 +5,60 @@
 {% block title_text_2 %}
 {% endblock %}
 
-<center><p><h1>Вы слушаете радио онлайн — {{ radioitem.radio_name }}</h1></p>
-    <hr>
-
-        <audio controls><source src="{{ radioitem.radio_flow }}" type="audio/mpeg">
+<center><p><h1>Вы слушаете радио онлайн — {{ radioitem.radio_name }}</h1></p></center>
+<div><img src="{{ radioitem.radio_logo_link }}" width="300" height="300"></div>
+<div align="center">
+    <audio controls autoplay><source src="{{ radioitem.radio_flow }}" type="audio/mpeg">
             Тег audio не поддерживается вашим браузером.
-        </audio>
-    </center>
-
+    </audio>
+</div><div align="center">
+    <a href ="#"><button type="button" class="btn btn-danger btn-lg">Сообщить об ошибке</button></a>
+</div>
+<br>
 <div>
+    <table class="table table-dark">
 
-    <hr>
+            <tbody>
+            <tr class="bg-primary">
+                <th scope="col">Жанр:  {{ radioitem.radio_style }} </th>
+                <th scope="col">Страна:{{ radioitem.radio_city.country }}</th>
+                <th scope="col">Город: {{ radioitem.radio_city }}        </th>
+                <th scope="col">Like:  {{ radioitem.radio_likes }}       </th>
+                <th scope="col">Views: {{ radioitem.radio_view }}        </th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+        </tr>
+        <tbody>
+        </table>
+</div>
     <div >
     <div><h1>{{ radioitem.radio_description }}</h1></div>
     <div align="center">
-        {% with tab='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' space='&nbsp;&nbsp;' %}
-        <table>
-            <tr>
-                <td><strong>{{ tab }}Жанр: </strong></td>
-                <td><p><strong> {{ space }}{{ radioitem.radio_style }}</strong></p></td>
-                <td><strong>{{ tab }}Страна: </strong></td>
-                <td><p><strong> {{ space }}{{ radioitem.radio_city.country }}</strong></p></td>
-                <td><strong>{{ tab }}Город: </strong></td>
-                <td><p><strong> {{ space }}{{ radioitem.radio_city }}</strong></p></td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td><strong>{{ tab }}Like: </strong></td>
-                <td><p><strong> {{ space }}{{ radioitem.radio_likes }}</strong></p></td>
-                <td><strong>{{ tab }}Views: </strong></td>
-                <td><p><strong> {{ space }}{{ radioitem.radio_view }}</strong></p></td>
-            </tr>
-        </table>
-        {% endwith %}
+
+
+
         </div>
     </div>
 </div>
+
+
+
+{% endblock %}
+{% block footer %}
+    
+
+                <div class="tm-social-icons-container text-xs-center">
+                    <a href="http://vk.com" class="tm-social-link"><i class="fa fa-vk"></i></a>
+                    <a href="http://instagram.com" class="tm-social-link"><i class="fa fa-instagram"></i></a>
+                    <a href="http://twitter.com" class="tm-social-link"><i class="fa fa-twitter"></i></a>
+                    <a href="http://odnoklassniki.ru" class="tm-social-link"><i class="fa fa-odnoklassniki"></i></a>
+                    <a href="#" class="tm-social-link"><i class="fa fa-linkedin"></i></a>
+                </div>
 
 
 

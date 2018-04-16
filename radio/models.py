@@ -47,19 +47,23 @@ class Radioitem(models.Model):
         verbose_name =          'Радиостанция'
         verbose_name_plural =   'Радиостанции'
         db_table = 'Radioitem'
+        ordering = ['id']
 
-    radio_name =        models.CharField(max_length=15,verbose_name='Название',unique=True)
+    radio_name =        models.CharField(max_length=40,verbose_name='Название',unique=True)
     radio_description = models.TextField(verbose_name='Описание радиостанции')
     radio_style =       models.ForeignKey(Style,on_delete=models.CASCADE,verbose_name='Жанр')
     radio_flow =        models.URLField(blank=True,null=True,verbose_name="Ссылка на поток")
     radio_logo =        models.ImageField(upload_to='logo',verbose_name='Лого Радиостанции',blank=True)
+    radio_logo_link =   models.URLField(blank=True,verbose_name='Ссылка на изображение',max_length=200)
     radio_view =        models.IntegerField(default=0,verbose_name='Просмотры')
     radio_likes=        models.IntegerField(default=0,verbose_name='Лайки')
     radio_city =        models.ForeignKey(City,on_delete=models.CASCADE,verbose_name='Город',blank=True,null=True)
     created =           models.DateTimeField(auto_now_add=True, auto_now=False,verbose_name='Добавлен')
     changed =           models.DateTimeField(auto_now_add=False, auto_now=True,verbose_name='Редактирован')
 
-
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('radioview', args=[str(self.id)])
     def __str__(self):
         return "%s" %self.radio_name
 

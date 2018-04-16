@@ -19,9 +19,9 @@ from radio                      import views
 
 
 urlpatterns = [
-    re_path('^radio(?P<radioid>[0-9]{1})/$/?$',   views.viewradio.as_view(),  name='radioview'),
-    re_path('^index2$',         views.index2,               name='index2'),
-    re_path('',                 views.index.as_view(),      name='index'),
+    re_path('^radio(?P<radioid>[0-9])/?$',   views.viewradio.as_view(),  name='radioview'),
+    re_path('^index2$',                      views.index2,               name='index2'),
+    re_path('',                              views.index.as_view(),      name='index'),
 
 ]
 #Ссылки на радио
