@@ -399,6 +399,8 @@ border-top-color: #f9c922; /* Chrome, Opera 15+, Safari 5+ */ animation: spin 1.
 	padding-right: 1px;
 	float: left;
 	width: 100%;
+	color: black;
+	font-size: 1.4em;
 }
 
 .grid-item:last-child { margin-bottom: 0; }
@@ -508,6 +510,7 @@ figure.effect-bubba {
 
 .cd-hero-slider .selected .cd-full-width figure.effect-bubba h2.tm-figure-title {
     padding-top: 20%;
+    font-size: 2.25em;
     -webkit-transition: -webkit-transform 0.35s;
     transition: transform 0.35s;
     -webkit-transform: translate3d(0,-20px,0);

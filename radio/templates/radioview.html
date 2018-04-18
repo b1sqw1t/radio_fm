@@ -4,54 +4,51 @@
 {% endblock %}
 {% block title_text_2 %}
 {% endblock %}
+<div>
+    <table style="background:Gray; font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif; ">
+        <tr>
+            <td colspan="3" style="font-size: 3em;">
+                <center>Вы слушаете  — {{ radioitem.radio_name }}</center>
+                <center><audio controls autoplay><source src="{{ radioitem.radio_flow }}" type="audio/mpeg">
+                            Тег audio не поддерживается вашим браузером.
+                        </audio>
+                        <a href ="{% url 'error' radioid=radioitem.id%}"><button type="button" class="btn btn-danger btn-lg">Сообщить об ошибке</button></a>
+                </center>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 300px;"><img src="{{ radioitem.radio_logo_link }}"></td>
+            <td style="font-size: 2em;">
+                {{ radioitem.radio_description }}
 
-<center><p><h1>Вы слушаете радио онлайн — {{ radioitem.radio_name }}</h1></p></center>
-<div><img src="{{ radioitem.radio_logo_link }}" width="300" height="300"></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table class="table table-dark">
+                    <tbody>
+                        <tr class="bg-primary">
+                            <th scope="col">Жанр:   <a href="{% url 'search_style' styleid=radioitem.radio_style.id %}">{{ radioitem.radio_style }}</a> </th>
+                            <th scope="col">Страна: <a href="{% url 'search_country' countryid=radioitem.radio_city.country.id%}">{{ radioitem.radio_city.country }}</a></th>
+                            <th scope="col">Город:  <a href="{% url 'search_city' cityid=radioitem.radio_city.id%}">{{radioitem.radio_city  }}</a>        </th>
+                            <th scope="col"><a href="{% url 'like' likeid=radioitem.id %}">Like:   {{ radioitem.radio_likes }}</a> </th>
+                            <th scope="col">Views:  {{ radioitem.radio_view }}        </th>
+                        </tr>
+                        <tr>
+                            <th></th><th></th><th></th><th></th><th></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
 <div align="center">
-    <audio controls autoplay><source src="{{ radioitem.radio_flow }}" type="audio/mpeg">
-            Тег audio не поддерживается вашим браузером.
-    </audio>
-</div><div align="center">
-    <a href ="#"><button type="button" class="btn btn-danger btn-lg">Сообщить об ошибке</button></a>
+
 </div>
 <br>
-<div>
-    <table class="table table-dark">
-
-            <tbody>
-            <tr class="bg-primary">
-                <th scope="col">Жанр:  {{ radioitem.radio_style }} </th>
-                <th scope="col">Страна:{{ radioitem.radio_city.country }}</th>
-                <th scope="col">Город: {{ radioitem.radio_city }}        </th>
-                <th scope="col">Like:  {{ radioitem.radio_likes }}       </th>
-                <th scope="col">Views: {{ radioitem.radio_view }}        </th>
-            </tr>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-        </tr>
-        <tbody>
-        </table>
-</div>
-    <div >
-    <div><h1>{{ radioitem.radio_description }}</h1></div>
-    <div align="center">
-
-
-
-        </div>
-    </div>
-</div>
-
-
-
 {% endblock %}
 {% block footer %}
-    
-
                 <div class="tm-social-icons-container text-xs-center">
                     <a href="http://vk.com" class="tm-social-link"><i class="fa fa-vk"></i></a>
                     <a href="http://instagram.com" class="tm-social-link"><i class="fa fa-instagram"></i></a>
@@ -59,7 +56,5 @@
                     <a href="http://odnoklassniki.ru" class="tm-social-link"><i class="fa fa-odnoklassniki"></i></a>
                     <a href="#" class="tm-social-link"><i class="fa fa-linkedin"></i></a>
                 </div>
-
-
 
 {% endblock %}

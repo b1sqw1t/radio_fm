@@ -16,6 +16,9 @@ class Country(models.Model):
     def __str__(self):
         return "%s" % self.name
 
+
+
+
 class City(models.Model):
     class Meta:
         verbose_name =          'Город'
@@ -58,6 +61,7 @@ class Radioitem(models.Model):
     radio_view =        models.IntegerField(default=0,verbose_name='Просмотры')
     radio_likes=        models.IntegerField(default=0,verbose_name='Лайки')
     radio_city =        models.ForeignKey(City,on_delete=models.CASCADE,verbose_name='Город',blank=True,null=True)
+    radio_error=        models.BooleanField(verbose_name='Ошибка',default=False)
     created =           models.DateTimeField(auto_now_add=True, auto_now=False,verbose_name='Добавлен')
     changed =           models.DateTimeField(auto_now_add=False, auto_now=True,verbose_name='Редактирован')
 

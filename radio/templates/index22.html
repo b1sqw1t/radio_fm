@@ -5,25 +5,16 @@
     <meta charset="UTF-8">
     <title>{{ title }}</title>
 </head>
-<body>{% if  radioitem > 1  %}
+<body>
 
-    {% for field in radioitem %}
-        <div>
-        <p>{{ field.radio_name }}</p>
-        <p>{{ field.radio_description }}</p>
 
-          <audio controls>
-                <source src="{{ field.radio_flow }}" type="audio/mpeg">
-                    Тег audio не поддерживается вашим браузером.
-            </audio>
-            <p>{{ field.radio_city.country }}, {{ field.radio_city }}</p>
-            <hr>
-        </div>
-    {% endfor %}
-{% else %}
-<h1>{{ radioitem }}  </h1>
-<h1>{{ ccity }}  </h1>
-{% endif %}
+
+{% for object in object_list %}
+    <p>{{ object }}</p>
+{% endfor %}
+
+
+
 
 </body>
 </html>
