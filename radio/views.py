@@ -1,7 +1,7 @@
-from django.shortcuts import render,redirect,get_object_or_404,get_list_or_404
-from radio.models import Radioitem,City,Country, Style
-from django.views.generic import list,base
-
+from django.shortcuts       import render,redirect,get_object_or_404,get_list_or_404
+from radio.models           import Radioitem,City,Country, Style
+from django.views.generic   import list,base
+from radio.forms            import CommentForm
 
 
 
@@ -64,7 +64,7 @@ class viewradio(base.TemplateView):
     Выводит выбранную радиостанцию
     """
     template_name = 'radioview.html'
-
+    form = None
 
     def get(self,request,*args,**kwargs):
         try:
@@ -72,6 +72,7 @@ class viewradio(base.TemplateView):
             object = Radioitem.objects.get(pk=self.radioid)
             object.radio_view += 1
             object.save()
+            self.form = CommentForm()
         except:
             return redirect('index')
         return super(viewradio,self).get(request,*args,**kwargs)
@@ -80,7 +81,19 @@ class viewradio(base.TemplateView):
         context = super(viewradio,self).get_context_data(**kwargs)
         context['radioitem'] = Radioitem.objects.get(id=self.radioid)
         context['title'] = context['radioitem'].radio_name
+        context['comment_form'] = self.form
         return context
+
+    def post(self,request,*args,**kwargs):
+        self.radioid = self.kwargs['radioid']
+        object = Radioitem.objects.get(pk=self.radioid)
+        self.form = CommentForm(request.POST)
+        if self.form.is_valid():
+            new_comment = self.form.save(commit=False)
+            new_comment.radiostation = object
+            new_comment.save()
+            return redirect(str(object.get_absolute_url()))
+        return super(viewradio,self).get(request,*args,**kwargs)
 
     def get_queryset(self):
         return Radioitem.objects.get(id=self.radioid)

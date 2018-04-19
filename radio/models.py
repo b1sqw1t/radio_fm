@@ -45,12 +45,14 @@ class Style(models.Model):
         return "%s" %self.name
 
 
+
 class Radioitem(models.Model):
     class Meta:
         verbose_name =          'Радиостанция'
         verbose_name_plural =   'Радиостанции'
         db_table = 'Radioitem'
         ordering = ['id']
+
 
     radio_name =        models.CharField(max_length=40,verbose_name='Название',unique=True)
     radio_description = models.TextField(verbose_name='Описание радиостанции')
@@ -84,3 +86,25 @@ class Radioitem(models.Model):
         self.radio_logo.delete(save=False)
         super(Radioitem,self).delete(*args,**kwargs)
 
+
+class Comment(models.Model):
+    class Meta:
+        ordering = ('created',)
+        verbose_name = 'Комментарий'
+        verbose_name_plural =   'Комментарии'
+
+
+    radiostation = models.ForeignKey(Radioitem,on_delete=models.SET_NULL,null=True, related_name='comments',verbose_name='Радиостанция')
+    author  = models.CharField(max_length=40,verbose_name='Автор')
+    email   = models.EmailField(verbose_name='e-mail')
+    text    = models.TextField(verbose_name='Комментарий')
+    created = models.DateTimeField(auto_now_add=True,auto_now=False,verbose_name='Создан')
+    changed = models.DateTimeField(auto_now_add=False,auto_now=True,verbose_name='Изменен')
+    visible = models.BooleanField(default=True,verbose_name='Отображать')
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('radioview', args=[str(self.radiostation.id)])
+
+    def __str__(self):
+        return 'Пользователь: {}. Комментарий: {} '.format(self.author,self.text)
