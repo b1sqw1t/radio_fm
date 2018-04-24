@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Email</title>
+</head>
+<body>
+{% if  sent  %}
+    <h1>ПИСЬМО УСПЕШНО ОТПРАВЛЕНО</h1>
+{% else %}
+<h1>ПИСЬМО НЕ ОТПРАВЛЕНО</h1>
+<h2>ВОЗНИКЛА ОШИБКА ПРИ ОТПРАВКИ ПИЬСМА</h2>
+{% endif %}
+<form action="" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+<p>{{ field.label }} {{ field }}</p>
+    {% endfor %}
+    <input type="submit" value="Отправить на почту">
+</form>
+</body>
+</html>

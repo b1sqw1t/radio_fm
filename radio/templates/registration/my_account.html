@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мой аккаунт</title>
+</head>
+<body>
+<p>Пользователь {{ user }}</p>
+<p><a href="{% url 'account:login' %}">Войти</a></p>
+<p><a href="{% url 'account:logout' %}">ВЫЙТИ</a></p>
+<p><a href="{% url 'account:password_change' %}">Сменить пароль</a></p>
+
+</body>
+</html>

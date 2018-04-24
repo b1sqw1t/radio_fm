@@ -3,14 +3,15 @@
 
 {% block body %}
 {% for field in object_list %}
+
     <div class="grid-item">
-        <a href="{% url 'radioview' field.id %}"><h1 align="center">{{ field.radio_name }}</h1></a>
+        <a href="{% url 'radio:radioview' field.id %}"><h1 align="center">{{ field.radio_name }}</h1></a>
         <figure class="effect-bubba" >
             <img src="{{field.radio_logo_link}}" alt="Image" class="img-fluid tm-img">
             <figcaption>
                 <p class="tm-figure-title"></p>
                 <p class="tm-figure-description" ><strong>Слушать радиостанцию "{{ field.radio_name }}" онлайн</strong></p>
-                <a href="{% url 'radioview' field.id %}">ссылка</a>
+                <a href="{% url 'radio:radioview' field.id %}">ссылка</a>
             </figcaption>
         </figure>
     </div>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+{{ user }}
+<form action="" method="post">
+    {%csrf_token%}
+    {{ form }}
+<input type="submit" value="Login">
+</form>
+<p><a href="{% url 'account:logout' %}">ВЫЙТИ</a></p>
+</body>
+</html>
