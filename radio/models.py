@@ -67,9 +67,9 @@ class Radioitem(models.Model):
     created =           models.DateTimeField(auto_now_add=True, auto_now=False,verbose_name='Добавлен')
     changed =           models.DateTimeField(auto_now_add=False, auto_now=True,verbose_name='Редактирован')
 
-    def get_absolute_url(self):
+    def get_absolute_url(self): #TODO: Доработать!!!!!
         from django.urls import reverse
-        return reverse('radioview', args=[str(self.id)])
+        return reverse('radio:radioview', args=[str(self.id)])
     def __str__(self):
         return "%s" %self.radio_name
 
@@ -104,7 +104,7 @@ class Comment(models.Model):
 
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse('radioview', args=[str(self.radiostation.id)])
+        return reverse('radio:radioview', args=[str(self.radiostation.id)])
 
     def __str__(self):
         return 'Пользователь: {}. Комментарий: {} '.format(self.author,self.text)

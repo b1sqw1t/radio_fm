@@ -71,14 +71,16 @@ http://www.tooplate.com/view/2086-multi-color
                                 <li class="nav-item">
                                     <a class="nav-link" href="index4.html">Другие</a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a class="nav-link" href="index4.html">Другие</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index4.html">Другие</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="about">О НАС</a>
+                                    {% if  not user.is_authenticated  %}
+                                    <p><a class="nav-link" href="{% url 'account:my_account' %}">Войти Регистрация</a></p>
+                                    {% else %}
+                                    <p><a class="nav-link" href="{% url 'account:my_account' %}">{{ user.get_full_name }}</a>
+                                        <a class="nav-link" href="{% url 'account:logout' %}">Выйти</a></p>
+                                    
+                                    {% endif %}
+                                    
                                 </li>
                             </ul>
                         </div>                        
@@ -100,17 +102,20 @@ http://www.tooplate.com/view/2086-multi-color
                                         <h2 class="tm-text-title tm-gallery-title tm-white">
                                             <span class="tm-white">
                                                 {% block title_text %}
-                                                    Radio FM
+                                                <h1 style="font-size: 120">Radio FM</h1>
                                                 {% endblock %}
                                             </span></h2>
                                             <p class="tm-text">
                                                 {% block title_text_2 %}
+                                        <h2>
                                                     <p>Radio FM это сборник всех популярных радиостанций мира.</p>
                                                     <p>Тут вы можете найти любую радиостанцию на любой вкус.</p>
-                                                {% endblock %}
+                                        </h2>
+                                        {% endblock %}
                                             </p>
                                     </div>
                                     {% block body %}
+
                                     <!-- <div class="grid-item">
                                         <figure class="effect-bubba">
                                             <img src="{% static 'img/tm-img-01-tn.jpg' %}" alt="Image" class="img-fluid tm-img">

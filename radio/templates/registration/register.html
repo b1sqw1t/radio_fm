@@ -1,0 +1,36 @@
+{% extends 'base/index.html' %}
+{% block title_text %}
+    <h1>Регистрация</h1>
+{% endblock %}
+{% block title_text_2 %}
+    <h2>Внимание, все поля обязательны для ввода!</h2>
+{% endblock %}
+{% block body %}
+
+<form action="" method="post">
+    {% if  label  %}
+        {{ label }}
+    {% endif %}
+    {% csrf_token %}
+    <table>
+        {% for field in user_form %}
+        <tr>
+            <td><p><h2>{{field.label}}</h2></p></td>
+            <td><p><h2 style="color:black">{{ field }} </h2></p></td>
+            <td>{% if  field.errors  %}
+                {% for name in field.errors %}
+                <p style="color:red">{{ name }}</p>
+                {% endfor %}
+            {% endif %}</td>
+
+
+        </tr>
+
+
+        {% endfor %}
+        <tr><td></td><td>    <input type="submit" value="Зарегистрироваться">
+</td></tr>
+    </table>
+    
+</form>
+{% endblock %}

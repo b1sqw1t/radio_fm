@@ -7,3 +7,5 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('author', 'email', 'text')
 
+
+

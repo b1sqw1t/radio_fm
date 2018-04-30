@@ -1,16 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
-{{ user }}
-<form action="" method="post">
-    {%csrf_token%}
-    {{ form }}
-<input type="submit" value="Login">
-</form>
-<p><a href="{% url 'account:logout' %}">ВЫЙТИ</a></p>
-</body>
-</html>
+{% extends 'base/index.html' %}
+
+{% block title_text %}
+<p><h1><b>ДОБРО ПОЖАЛОВАТЬ</b></h1></p>
+{% endblock %}
+{% block title_text_2 %}
+    <p><h2>Пожалуйста, авторизируйтесь</h2></p>
+{% endblock %}
+{% block body %}
+{% if form.errors %}
+<p style="color:red"><b>ОШИБКА.</b></p>
+<p style="color:red">Вы неправильно ввели Логин или Пароль</p>
+<p style="color:red">Убедитесь в правильности введеных вами данных, и повторите попытку!</p>
+{% endif %}
+<div class="grid-item">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <table >
+            {% for field in form %}
+            <tr>
+                <td>{{ field.label }}</td>
+                <td>{{ field.errors }}</td>
+                <td>{{ field}}</td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td><input type="submit" value="Войти"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><a href="{% url 'account:registration' %}">Зарегистрироваться</a> </td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><a href="{% url 'account:password_reset' %}">Забыл пароль?</a> </td>
+
+            </tr>
+
+        </table>
+    </form>
+</div>
+
+{% endblock %}

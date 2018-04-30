@@ -129,15 +129,16 @@ STATIC_URL          = '/static/'
 STATICFILES_DIRS    = (os.path.join(BASE_DIR,'static'),)
 TEMPLATE_DIRS       = (os.path.join(BASE_DIR,'templates'),)
 
-LOGIN_URL = '/account:login/'
-LOGOUT_URL= '/account:logout/'
+LOGIN_URL = 'account:login'
+LOGOUT_URL= 'account:logout'
 LOGIN_REDIRECT_URL = 'radio:index'
 
 #Email setting
 EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_HOST_USER = 'bisqwit@yandex.ru'
-EMAIL_HOST_PASSWORD = 'password' #Вставь пароль от почты
+EMAIL_HOST_USER = 'email-email'
+EMAIL_HOST_PASSWORD = 'passwordpassword' #Вставь пароль от почты
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'info@radio_fm.ru'
 SERVER_EMAIL = 'info@radio_fm.ru'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
