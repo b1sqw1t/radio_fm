@@ -18,14 +18,15 @@ from django.urls                import path,re_path
 from radio                      import views
 app_name = 'Radio'
 urlpatterns = [
-    re_path('^radio(?:(?P<radioid>\d+)/)?$',             views.viewradio.as_view(),  name='radioview'),
+    re_path('^radio(?:(?P<radioid>\d+)/)?$',              views.viewradio.as_view(),  name='radioview'),
     re_path('^index2$',                                   views.index2,               name='index2'),
+    re_path('^delete_comment(?:(?P<id>\d+)/)?$',          views.delete_comment,       name='delete_comment'),
     re_path('^like(?:(?P<likeid>\d+)/)?$',                views.like,                 name='like'),
     re_path('^error(?:(?P<radioid>\d+)/)?$',              views.error,                name='error'),
     re_path('^search_city(?:(?P<cityid>\d+)/)?$',         views.search_city,          name='search_city'),
     re_path('^search_country(?:(?P<countryid>\d+)/)?$',   views.search_country,       name='search_country'),
     re_path('^search_style(?:(?P<styleid>\d+)/)?$',       views.search_style,         name='search_style'),
-    re_path('',                                         views.index.as_view(),      name='index'),
+    re_path('',                                           views.index.as_view(),      name='index'),
 
 ]
 #Ссылки на радио

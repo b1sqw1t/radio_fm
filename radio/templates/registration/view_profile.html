@@ -1,0 +1,77 @@
+{% extends 'base/index.html' %}
+
+{% block title_text %}
+{% if  user.is_authenticated  %}
+    {{ user.get_full_name }} / <a href="{% url 'account:logout' %}">ВЫЙТИ</a>
+{% endif %}
+{% endblock %}
+{% block title_text_2 %}
+    {% if  user.username == object.username  %}
+
+<table>
+
+            <tr>
+                <td><h1>________________________________</h1></td>
+                <td><h1>_________________________________</h1></td>
+            </tr>
+            <tr>
+                <td><h1><strong><a href="{% url 'account:password_change' %}">Сменить пароль</a></strong></h1></td>
+                <td><h1><strong><a href="{% url 'account:edit_profile' %}">Изменить Профиль</a></strong></h1></td>
+            </tr>
+</table>
+    {% endif %}
+{% endblock %}
+{% block body %}
+
+        <table>
+            <tr>
+                <td><h1>_________________________________</h1></td>
+                <td><h1>_________________________________</h1></td>
+            </tr>
+            <tr>
+                <td> <h1>Ник Нейм:</h1> </td>
+                <td> <h1>{{ object.username }}</h1></td>
+            </tr>
+            <tr>
+                <td><h1>Имя:</h1></td>
+                <td><h1>{{ object.first_name }}</h1></td>
+            </tr>
+            <tr>
+                <td><h1>Фамилия:</h1></td>
+                <td><h1>{{ object.last_name }}</h1></td>
+            </tr>
+            {% if  user.is_authenticated  %}
+            <tr>
+                <td><h1>Email:</h1></td>
+                <td><h1>{{ object.email }}</h1></td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td><h1>Дата Рождения</h1></td>
+                <td><h1>{{ object.profile.birthday }}</h1></td>
+            </tr>
+            <tr>
+                <td><h1>Доп. ифнормация</h1></td>
+                <td><h1>{{ object.profile.other_info }}</h1></td>
+            </tr>
+            <tr>
+                <td><h1>_________________________________</h1></td>
+                <td><h1>_________________________________</h1></td>
+            </tr>
+            <tr>
+                <td><h1>Последняя авторизация</h1></td>
+                <td><h1>{{ object.last_login }}</h1></td>
+            </tr>
+            <tr>
+                <td><h1>Дата регистрации</h1></td>
+                <td><h1>{{ object.date_joined }}</h1></td>
+            </tr>
+
+            <tr>
+                <td><h1>_________________________________</h1></td>
+                <td><h1>_________________________________</h1></td>
+            </tr>
+        </table>
+
+{% endblock %}
+

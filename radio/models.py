@@ -67,7 +67,7 @@ class Radioitem(models.Model):
     created =           models.DateTimeField(auto_now_add=True, auto_now=False,verbose_name='Добавлен')
     changed =           models.DateTimeField(auto_now_add=False, auto_now=True,verbose_name='Редактирован')
 
-    def get_absolute_url(self): #TODO: Доработать!!!!!
+    def get_absolute_url(self):
         from django.urls import reverse
         return reverse('radio:radioview', args=[str(self.id)])
     def __str__(self):
@@ -89,7 +89,7 @@ class Radioitem(models.Model):
 
 class Comment(models.Model):
     class Meta:
-        ordering = ('created',)
+        ordering = ('-created',)
         verbose_name = 'Комментарий'
         verbose_name_plural =   'Комментарии'
 

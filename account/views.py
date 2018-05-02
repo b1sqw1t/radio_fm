@@ -1,9 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.core.mail import send_mail
 from account.forms import EmailPostForm,UserRegistrationForm,UserEditForm
 from django.urls import reverse_lazy
 from account.models import Profile
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 def test(request):
     return render(request,'my_account.html')
@@ -58,7 +59,7 @@ def edit(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            return redirect(reverse_lazy('account:edit_profile'))
+            return redirect(reverse_lazy('account:my_account'))
         else:
             return render(request,
                           'registration/edit.html',
@@ -71,3 +72,8 @@ def edit(request):
                       'registration/edit.html',
                       {'user_form': user_form,
                        'profile_form': profile_form})
+
+
+def view_profile(request,id):
+    object = get_object_or_404(User, id=id)
+    return render(request,'registration/view_profile.html',{'object':object})

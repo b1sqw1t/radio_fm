@@ -24,6 +24,7 @@ from django.contrib.auth.views        import login,logout
 urlpatterns = [
        path('admin/',           admin.site.urls),
     re_path('^account/',        include('account.urls', namespace='account')),
+    re_path('^polls/',          include('polls.urls',   namespace='polls')),
     re_path('',                 include('radio.urls',   namespace='radio'))
 ]
 if settings.DEBUG:

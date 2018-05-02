@@ -10,9 +10,10 @@ app_name = 'account'
 
 urlpatterns = [
     re_path('^test',                        views.post_share,                   name='post_share'),
-    re_path('^index',                       views.test,                         name='test'),
-    re_path('^profile',                     views.my_account,                   name='my_account'),
-    re_path('^login$',                      login,                              name='login'),
+    re_path('^index/',                      views.test,                         name='test'),
+    re_path('^profile/(?P<id>[0-9]+)/$',    views.view_profile,                 name='view_profile'),
+    re_path('^profile/$',                   views.my_account,                   name='my_account'),
+    re_path('^login/$',                     login,                              name='login'),
     re_path('^logout/$',                    logout, {'next_page' : reverse_lazy('radio:index')},                            name='logout'),
     re_path('^create_account/$',            views.register,                     name='registration'),
     re_path('^edit/$',                      views.edit,                         name='edit_profile'),

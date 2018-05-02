@@ -1,8 +1,8 @@
 from django.shortcuts       import render,redirect,get_object_or_404,get_list_or_404
-from radio.models           import Radioitem,City,Country, Style
+from radio.models           import Radioitem,City,Country, Style,Comment
 from django.views.generic   import list,base
 from radio.forms            import CommentForm
-
+from django.contrib.auth.decorators import login_required
 
 
 class index(list.ListView):
@@ -11,7 +11,7 @@ class index(list.ListView):
     """
     template_name = 'index.html'
     model = Radioitem
-    paginate_by = 12
+    paginate_by = 4
 
     def get_context_data(self,**kwargs):
         context= super(index,self).get_context_data(**kwargs)
@@ -91,8 +91,10 @@ class viewradio(base.TemplateView):
         if self.form.is_valid():
             new_comment = self.form.save(commit=False)
             new_comment.radiostation = object
+            new_comment.author = request.user
+            new_comment.email = request.user.email
             new_comment.save()
-            return redirect(str(object.get_absolute_url()))
+            return redirect(object)
         return super(viewradio,self).get(request,*args,**kwargs)
 
     def get_queryset(self):
@@ -117,3 +119,12 @@ def error(request,radioid=None):
         object.radio_error = True
         object.save()
     return redirect(str(object.get_absolute_url()))
+
+@login_required
+def delete_comment(request,id):
+    object = get_object_or_404(Comment, id=id)
+    if request.user.username == object.author:
+        object.delete()
+        return redirect(object)
+    else:
+        return redirect(object)

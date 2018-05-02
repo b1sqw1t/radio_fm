@@ -49,8 +49,16 @@
     {% if  comment.visible  %}
         <tr>
             <th><strong>{{ comment.author }} Написал:  </strong></th>
+            <th></th>
             <th><strong>{{ comment.created }}</strong></th>
         </tr>
+        {% if  comment.author == user.username  %}
+        <tr>
+            <th></th>
+            <th><strong><a href="{% url 'radio:delete_comment' id=comment.id%}">Удалить|</a> </strong></th>
+            <th><strong>Редактировать</strong></th>
+        </tr>
+        {% endif %}
         <tr>
             <th colspan="2">{{ comment.text }}</th>
         </tr>
@@ -60,23 +68,24 @@
     {% endif %}
 {% endfor %}
         </table>
+    {% if  user.is_authenticated  %}
     <form action="" method="post">
         {% csrf_token %}
     <table>
         {% for field in comment_form  %}
             <tr>
-                <td>{{  field.label}}</td>
-                <td>{{  field.errors}}</td>
-                <td>{{  field}}</td>
+                <td><p>{{  field.label}}</p>
+                <p>{{  field.errors}}</p>
+                <p style="color:black">{{  field}}</p></td>
             </tr>
 
         {% endfor %}
             <tr>
-                <td></td>
-                <td></td>
+
                 <td><input type="submit" value="Отправить"></td>
             </tr>
     </table>
+        {% endif %}
     </form>
 </div>
 <br>
